@@ -1,0 +1,26 @@
+# coding=utf-8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+import itertools
+import json
+import collections
+
+class test_case():
+    def test_child_attribute(self,attribute,str):
+        print(str)
+        ca = list(itertools.product(*attribute))
+        for i in ca:
+            case = (dict(zip(str, i)))
+            print json.dumps(case, encoding="UTF-8", ensure_ascii=False)
+
+if __name__ == '__main__':
+    #填入字段和对应字段测试方法后自动生成测试用例
+    str = ["name", "password", "email",'address']
+    str_name=['为空', '最大值','正确','特殊字符','错误数据']
+    str_password=['为空', '最大值','错误数据']
+    str_email = ['为空', '最大值','正确','特殊字符','错误数据']
+    str_address=['为空', '最大值','正确','特殊字符','错误数据']
+    attribute=[str_name,str_password,str_email,str_address]
+    tt=test_case()
+    tt.test_child_attribute(attribute,str)
